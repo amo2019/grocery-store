@@ -66,3 +66,7 @@ img, svg {
     margin-top: auto;
 }
 
+.px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
