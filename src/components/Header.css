@@ -1,0 +1,21 @@
+.header {
+    margin-top: 0.1rem;
+    font-weight: bold;
+    text-decoration-line: none;
+    padding: 2rem;
+    background-color: rgb(50, 53, 53);
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 400px;
+    border-bottom: 2px solid rgb(70, 67, 67);
+    
+}
+.header h1 {
+    font-size: 2.25rem;
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+    color: aliceblue;
+}

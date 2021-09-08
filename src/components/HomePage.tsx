@@ -5,11 +5,24 @@ import "./HomePage.css";
 
 export const HomePage: React.FunctionComponent<{
   products: Product[];
-}> = ({ products }) => {
+  search: string;
+}> = ({ products, search }) => {
+  const filteredProducts = useMemo(
+    () =>
+      (products ?? []).filter(
+        (product) =>
+          product.title
+            .includes(search) ||
+          product.description
+            .toLocaleLowerCase()
+            .includes(search)
+      ),
+    [products, search]
+  );
 
   return (
     <div className="grid-container">
-      {products.map((product) => (
+      {filteredProducts.map((product) => (
         <Link
           to={`/detail/${product.id}`}
           key={product.id}

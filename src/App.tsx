@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import { Header } from "./components/Header";
 import "./App.css";
 
@@ -15,13 +15,30 @@ function App() {
     setProducts(gsproducts)
   }, []);
 
+  const history = useHistory();
+  const location = useLocation();
+  const [search, setSearch] = useState("");
+  const onSetSearch = useCallback(
+    (search: string) => {
+      setSearch(search);
+      if (location.pathname !== "/") {
+        history.push("/");
+      }
+    },
+    [setSearch, history, location]
+  );
+
   return (
     <div>
-      <Header/>
+      <Header
+      search={search}
+      onSetSearch={onSetSearch}
+      />
       <Switch>
         <Route exact path="/">
           <HomePage
             products={products}
+            search={search}
           />
         </Route>
         <Route path="/detail/:id">

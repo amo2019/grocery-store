@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import "./Header.css";
 
-export const Header = ()=>{
+export const Header: React.FunctionComponent<{
+    search: string;
+    onSetSearch: (search: string) => void;
+    }> = ({ search, onSetSearch }) => {
+    
 
 return (
     <div className="header">
@@ -14,6 +19,9 @@ return (
         <input
         type="text"
         placeholder="Search.."
+        value={search}
+        onChange={(evt) => onSetSearch(evt.target.value)}
+        className="input p-2 text-xl  rounded-lg"
         />
     </div>
     <div>
