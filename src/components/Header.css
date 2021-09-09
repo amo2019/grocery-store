@@ -19,3 +19,38 @@
     text-decoration: none;
     color: aliceblue;
 }
+
+.cart-icon {
+    font-size: 1.3rem;
+    margin-top: .5rem;
+}
+
+.fa-donate:before {
+    content: "\f4b9";
+}
+
+.fa-shopping-cart:before {
+    content: "\f07a";
+}
+
+.notifications {
+    width: 2rem;
+    height: 2rem;
+    border: 6px rgb(235, 219, 50) solid;
+    border-radius: 50%;
+    background-color: #212724;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    
+}
+
+.hint {   
+    position: absolute;
+}
+
+.hint:hover::after {   
+    content: attr(data-cart);
+    
+}
