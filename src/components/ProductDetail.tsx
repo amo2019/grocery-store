@@ -43,6 +43,7 @@ export const ProductDetail: React.FunctionComponent<{
                     })}
             </div>
                     <button
+                    data-testid="detail-btn"
                     onClick={(evt) => {
                         evt.preventDefault();
                         onAddToCart(product);

@@ -17,7 +17,7 @@ export const Header: React.FunctionComponent<{
 return (
     <div className="header">
     <div className="text-2xl px-10 py-2">
-        <Link to="/">
+        <Link to="/" data-testid="header">
         <i className="fas fa-shopping-basket mr-2"></i>
         Simple Grocery Store
         </Link>
@@ -49,6 +49,7 @@ return (
         ))}
         <div className="flex">
             <button
+            data-testid="shopping-cart-btn"
             onClick={onClearCart}
             className="text-md px-8 py-1 font-bold bg-green-800 text-white rounded-full"
             >
@@ -62,9 +63,9 @@ return (
             </div>
         </div>
         </span>
-        <div className="hint" data-cart="Cart">
+        <div id="cart-total" className="hint" data-testid="Cart">
         
-        <span className="notifications" >{(cart ?? []).length}</span>
+        <span data-testid="cart-total" className="notifications" >{(cart ?? []).length}</span>
         </div>
     </div>
     </div>

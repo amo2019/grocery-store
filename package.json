@@ -26,7 +26,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "cypress": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -47,8 +48,11 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^8.0.1",
     "@types/react-router-dom": "^5.1.8",
     "craco": "^0.0.3",
+    "cypress": "^8.4.1",
+    "eslint-plugin-cypress": "^2.12.1",
     "postcss-loader": "^6.1.1"
   }
 }

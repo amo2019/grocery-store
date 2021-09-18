@@ -34,7 +34,7 @@ export const HomePage: React.FunctionComponent<{
           </h3>
           <div className="bg-white p-3">
             <div className="w-full flex justify-center">
-              <img src={product.image} alt={product.title}/>
+              <img src={product.image} alt={product.title} data-testid={`img-${product.id}`}/>
             </div>
             <div className="bg-white p-3">
               <div className="w-full flex justify-center">
@@ -49,6 +49,7 @@ export const HomePage: React.FunctionComponent<{
                   })}
                 </div>
                 <button
+                data-testid={`btn-${product.id}`}
                   onClick={(evt) => {
                     evt.preventDefault();
                     onAddToCart(product);
