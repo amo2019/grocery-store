@@ -184,8 +184,8 @@ a {
 
 /*image*/
 img, video {
-    max-width: 100%;
-    height: auto;
+    max-width: 80%;
+    height: 422px;
 }
 
 img, svg, video, canvas, audio, iframe, embed, object {
@@ -320,11 +320,6 @@ lockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
 
 .mr-2 {
     margin-right: 0.5rem;
-}
-
-img, video {
-    max-width: 80%;
-    height: 80%;
 }
 
 .h-8 {
