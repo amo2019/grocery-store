@@ -27,7 +27,7 @@ function App() {
   //const setDefaultPruducts = (gsproducts)=>setProducts(gsproducts)
   useEffect(() => {
     setProducts(gsproducts)
-  }, []);
+  }, [gsproducts]);
 
   const history = useHistory();
   const location = useLocation();
