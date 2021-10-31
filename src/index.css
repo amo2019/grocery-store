@@ -1,10 +1,9 @@
-@import "@fortawesome/fontawesome-free/css/all.css";
 
 .cart {
   width: 23rem;
   margin-top: 1.5rem;
   margin-left: -20rem;
-  background: rgb(51, 70, 61);
+  background: rgb(77, 120, 95);
   padding: 0.5rem;
   color: rgb(51, 48, 48);
   border: 1px solid black;
@@ -14,7 +13,7 @@
   --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
-  --tw-ring-color: rgba(59, 130, 246, 0.5);
+  --tw-ring-color: rgba(35, 231, 123, 0.5);
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
 }
@@ -26,11 +25,12 @@
 :root {
   --darkreader-neutral-background: #131516;
   --darkreader-neutral-text: #d8d4cf;
-  --darkreader-selection-background: #004daa;
+  --cart-background: rgb(77, 120, 95);
   --darkreader-selection-text: #e8e6e3;
+  --darkreader-selection-background: rgba(35, 231, 123, 0.5);
 }
 
 :selection {
-    background-color: #004daa !important;
+    background-color: #107a49 !important;
     color: #e8e6e3 !important;
 }
