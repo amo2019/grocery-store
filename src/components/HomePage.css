@@ -7,22 +7,6 @@
     justify-content: space-around;
 }
 
-.flex-container {
-    display: flex;
-    align-content: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.flex-cart {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: space-between;
-}
-
 .grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -41,6 +25,37 @@
 
 .justify-center {
     justify-content: center;
+}
+
+
+.flex-container {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+.flex-cart {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+}
+/* flex */
+.flex {
+    display: flex;
+    align-items: baseline;
+    margin-top: auto;
+}
+
+.flex-grow {
+    flex-grow: max(0.8);
+}
+
+.flex-row {
+    flex-direction: row;
+    margin-top: auto;
 }
 
 .input {
@@ -71,12 +86,12 @@ blockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
 
 .bg-green-600 {
     --tw-bg-opacity: 1;
-    background-color:rgb(90, 146, 130);
+    background-color:var(--cart-background);
 }
 
 .bg-green-900 {
     --darkreader-bg--tw-bg-opacity: 1;
-    background-color: rgb(9, 105, 78);
+    background-color: var(--cart-background);
 }
 
 .border {
@@ -123,8 +138,8 @@ a {
 }
 
 .px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .truncate {
     overflow: hidden;
@@ -160,7 +175,7 @@ a {
 
 .bg-white {
     --darkreader-bg--tw-bg-opacity: 1;
-    background-color: rgb(107, 160, 119);
+    background-color: var(--cart-background);
 }
 
 .p-3 {
@@ -285,22 +300,6 @@ lockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
     margin-bottom: 0.5rem;
 }
 
-/* flex */
-.flex {
-    display: flex;
-    align-items: baseline;
-    margin-top: auto;
-}
-
-.flex-grow {
-    flex-grow: 1;
-}
-
-.flex-row {
-    flex-direction: row;
-    margin-top: auto;
-}
-
 /* cart */
 .cart {
     background-image: initial;
@@ -354,7 +353,6 @@ img, video {
 }
 
 .w-96 {
-    width: 20rem;
+    width: 14rem;
     border-radius: 10px;
 }
-
