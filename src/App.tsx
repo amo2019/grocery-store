@@ -2,12 +2,11 @@ import { useEffect, useState, useCallback } from "react";
 import { useLocalStorage } from "react-use";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 
-import "./App.css";
-
 import type { Product } from "./product";
 import { HomePage } from "./components/HomePage";
 import { ProductDetail } from "./components/ProductDetail";
 import { Header } from "./components/Header";
+import  Form  from "./components/Form";
 import gproducts from "./products.json"
 
 function App() {
@@ -57,6 +56,9 @@ function App() {
             onAddToCart={onAddToCart}
             search={search}
           />
+        </Route>
+        <Route path="/form">
+          <Form />
         </Route>
         <Route path="/detail/:id">
           <ProductDetail products={products} onAddToCart={onAddToCart}  />
