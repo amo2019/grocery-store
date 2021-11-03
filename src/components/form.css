@@ -1,0 +1,77 @@
+select, option, input, label{
+    padding: 0.2rem 1rem;
+    font-size: 1.2rem;
+    color: inherit;
+}
+
+.form-box{
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+}
+.form-box label{
+    /* display: none; */
+    flex-basis: 50%;
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em auto;
+    padding: 1em 2em;
+    font-size: 1.5em;
+}
+
+.btn:hover{
+    background-color: rgb(56, 54, 54);
+    color: yellow;
+}
+
+textarea{
+    height: 89px;
+}
+
+
+@media all and (min-width: 500px){
+    .form-box{
+        
+    }
+    .form-box label{
+        display: block;
+    }
+}
+
+@media all and (min-width: 600px){
+    .form-box{
+        flex-direction: row;
+    }
+    .form-box label{
+        flex-basis: 6rem;
+        flex-shrink: 0;
+    }
+    .form-box input,
+    .form-box select,
+    .form-box textarea{
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+    
+    .form-box {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+}
+
+[data-tooltip]:before {            
+    position: absolute;
+    content: attr(data-tooltip);
+    opacity: 0;
+    margin: -2rem 0rem;
+    color: yellow;
+}
+
+[data-tooltip]:hover:before {        
+    opacity : 1;
+}
