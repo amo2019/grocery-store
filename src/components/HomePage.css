@@ -184,8 +184,8 @@ a {
 
 /*image*/
 img, video {
-    max-width: 100%;
-    height: auto;
+    max-width: 80%;
+    height: 422px;
 }
 
 img, svg, video, canvas, audio, iframe, embed, object {
@@ -322,11 +322,6 @@ lockquote, dl, dd, h1, h2, h3, h4, h5, h6, hr, figure, p, pre {
     margin-right: 0.5rem;
 }
 
-img, video {
-    max-width: 80%;
-    height: 80%;
-}
-
 .h-8 {
     height: 2rem;
 }
@@ -356,3 +351,23 @@ img, video {
     width: 14rem;
     border-radius: 10px;
 }
+
+.fab{
+    background: url(./plus-4.svg);
+    /* background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/179202/plus.svg); */
+    background-repeat: no-repeat;
+    background-color: hsl(159, 55%, 77%);
+    background-position: center center;
+    background-size: 50% 50%;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    box-shadow: 2px 2px 8px hsl(0, 0%, 18%);
+  }
+.fab:hover{
+    background-color: hsl(161, 50%, 60%);
+    cursor: pointer;
+  }
