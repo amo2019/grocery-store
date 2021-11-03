@@ -1,18 +1,39 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import type { Product } from "../product";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../app/store";
+import { DeleteProduct } from "../feature/productSlice";
+import { toggleSaveButton } from "../feature/buttonSlice";
+import { useHistory } from "react-router-dom";
 
 export const ProductDetail: React.FunctionComponent<{
     products: Product[];
     onAddToCart: (product: Product) => void;
 }> = ({ products, onAddToCart}) => {
-    const { id } = useParams<{
-        id: string;
-}>();
+    const { id } = useParams<{id: string; }>();
+    const productsSelector = useSelector(
+        (state: RootState) => state.products.item
+      );
+
+    const dispatch = useDispatch();
     const product = useMemo(
-        () => (products ?? []).find((p) => p.id === parseInt(id)),
-        [products, id]
+        () => (productsSelector ?? []).find((p) => p.id === parseInt(id)),
+        [productsSelector, id]
     );
+
+    const history = useHistory();
+        const [isDisabled, setDisabled] = useState(false);
+        
+        const handleAddForm = () => {
+          console.log('Your button was clicked and is now disabled');
+          dispatch(toggleSaveButton(true));
+            history.push({
+                pathname: '/form',
+                search: `?id=${id}`,
+                state: {product} 
+              })
+        }
 
     return (
         <div className="p-10">
@@ -53,6 +74,16 @@ export const ProductDetail: React.FunctionComponent<{
                     <i className="fas fa-cart-plus mr-2"></i>
                     Add To Cart
                     </button>
+                </div>
+                <div className="flex-container"> 
+                <button  onClick={() => {
+                    dispatch(
+                        DeleteProduct({...product, id: product.id})
+                    );
+                    history.push("/");
+                    }} className="btn">Delete</button>
+                <button disabled={isDisabled}
+                    onClick={handleAddForm} className="btn" type="submit" >Edit</button>
                 </div>
                 </div>
             </div>
