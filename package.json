@@ -24,12 +24,15 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
     "cypress": "cypress open"
   },
+  "homepage": "https://amo2019.github.io/grocery-store/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -54,6 +57,7 @@
     "craco": "^0.0.3",
     "cypress": "^8.4.1",
     "eslint-plugin-cypress": "^2.12.1",
+    "gh-pages": "^3.2.3",
     "postcss-loader": "^6.1.1"
   }
 }
