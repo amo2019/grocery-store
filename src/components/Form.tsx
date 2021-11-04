@@ -19,7 +19,7 @@ function Form() {
       const inputRef = useRef<any>(null);
       useEffect(() => {
         inputRef.current.focus();
-      })
+      }, [])
 
     const testSelector = useSelector(
       (state: RootState) => state.products.item.find((item: Product)=>{
