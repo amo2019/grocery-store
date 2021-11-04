@@ -12,7 +12,7 @@ export const Header: React.FunctionComponent<{
     onSetSearch: (search: string) => void;
 }> = ({ cart, onClearCart, search, onSetSearch }) => {
     const total = useMemo(
-    () => (cart ? cart.reduce((total, p) => total + p.price, 0) : 0),
+    () => (cart ? cart.reduce((total, p) => total + Number(p.price), 0) : 0),
     [cart]
     );
   

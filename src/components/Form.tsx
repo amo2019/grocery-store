@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
@@ -15,6 +15,11 @@ function Form() {
     
       })
     );
+  
+      const inputRef = useRef<any>(null);
+      useEffect(() => {
+        inputRef.current.focus();
+      })
 
     const testSelector = useSelector(
       (state: RootState) => state.products.item.find((item: Product)=>{
@@ -25,10 +30,10 @@ function Form() {
 
     console.log("testSelector:", testSelector)
 
-    const initialData = {
-      id: 0,
+    const initialData: Product = {
+      id: '',
       image: "",
-      price: 0,
+      price: '',
       title: "",
       category: "",
       description: ""
@@ -38,13 +43,12 @@ function Form() {
       return (crypto.getRandomValues(new Uint8Array(8))).toString().replace(/,/g, '').substr(1,16);
     
     }
-    
-
-    console.log("uuid:", parseInt(uuid()))
 
     const {save, edit} = useSelector(
       (state: RootState) => state.buttonReducer.toggle
     );
+
+    const [ errorMessage, setErrorMessage ] = useState('');
 
     const [ data, setData ] = useState(productsSelector || initialData);
     const dispatch = useDispatch();
@@ -58,7 +62,11 @@ function Form() {
     
     const onSubmit = async (e: React.FormEvent<EventTarget>, tag: number = 0) => {
         e.preventDefault()
-        if(!data.image || !data.title || !data.category || !data.price) return;
+        if(!data.image || !data.title || !data.category || !data.price) {
+          setErrorMessage("All Fields except description field are required");
+          setTimeout(()=>{setErrorMessage("");}, 2000)
+          return;
+        } 
         
        if (tag === 1) {
         data["id"] = parseInt(uuid())
@@ -66,6 +74,7 @@ function Form() {
         setData(data)
 
          handeleAdd(data)
+         setData(initialData);
        } else if (tag === 2) {
         setData(data);
         if (!data.id) return;
@@ -97,10 +106,10 @@ function Form() {
    
   return (
     <main>
-    <form onSubmit={onSubmit}>
+    <form className="main-container" onSubmit={onSubmit}>
       <div className="form-box">
         <label data-tooltip="required field" htmlFor="image" >Image</label>
-        <input id="image" name="image" type="text" value={data.image} onChange={(e)=>handleInputChange(e)}/>
+        <input ref={inputRef as any} id="image" name="image" type="text" value={data.image} onChange={(e)=>handleInputChange(e)}/>
       </div>
       <div className="form-box">
         <label data-tooltip="required field" htmlFor="price">Price</label>
@@ -118,6 +127,7 @@ function Form() {
         <label htmlFor="description">Description</label>
         <textarea id="description" name="description" value={data.description} onChange={(e)=>handleInputChange(e)} ></textarea>
       </div>
+      {errorMessage&&<p className="error">{errorMessage}</p>}
       <div className="flex-container"> 
       <button  disabled={save} className="btn" style={{ filter: save ? "blur(3px)" : "none"}} type="submit" onClick={(e)=>onSubmit(e, 1)}>Save</button>
       <button disabled={edit} className="btn" style={{ filter: edit ? "blur(3px)" : "none"}} type="submit" onClick={(e)=>onSubmit(e, 2)}>Update</button>

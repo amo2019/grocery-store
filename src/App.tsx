@@ -13,7 +13,7 @@ function App() {
   const [cart, setCart] = useLocalStorage<Product[]>("cart", []);
   const [products, setProducts] = useState<Product[]>([]);
   let gsproducts: Product[] = gproducts;
-  console.log("gproducts: ", gproducts)
+ 
   const onAddToCart = useCallback(
     (product: Product) => {
       setCart([...(cart ?? []), product]);
@@ -23,7 +23,7 @@ function App() {
   const onClearCart = useCallback(() => {
     setCart([]);
   }, [setCart]);
-  //const setDefaultPruducts = (gsproducts)=>setProducts(gsproducts)
+
   useEffect(() => {
     setProducts(gsproducts)
   }, [gsproducts]);

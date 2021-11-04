@@ -227,12 +227,12 @@ button, [type='button'], [type='reset'], [type='submit'] {
 
 .bg-green-800 {
     --darkreader-bg--tw-bg-opacity: 1;
-    background-color: rgb(44, 43, 54);
+    background-color: rgba(29, 29, 29, 0.658);
 }
 
 .bg-green-800:hover {
     --darkreader-bg--tw-bg-opacity: 1;
-    background-color: rgb(75, 77, 76);
+    background-color: rgb(57, 58, 58);
 }
 
 .font-bold {
@@ -250,7 +250,7 @@ button, [type='button'], [type='reset'], [type='submit'] {
 }
 
 .rounded-full {
-    border-radius: 9999px;
+    border-radius: 10px;
     margin-top: 1rem;
 }
 

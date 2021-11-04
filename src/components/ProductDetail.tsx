@@ -69,7 +69,7 @@ export const ProductDetail: React.FunctionComponent<{
                         evt.preventDefault();
                         onAddToCart(product);
                     }}
-                    className="text-2xl px-8 py-1 font-bold bg-green-800 text-white rounded-full"
+                    className="btn"
                     >
                     <i className="fas fa-cart-plus mr-2"></i>
                     Add To Cart
