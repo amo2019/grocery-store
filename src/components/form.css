@@ -40,6 +40,32 @@ textarea{
 }
 
 
+
+@media all and (max-width: 500px){
+    .grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    .flex-grow {
+        flex-grow: max(0,.2);
+    }
+    .input {
+        margin-left: 1rem;
+    }
+    .header {
+        font-weight:300;
+    }
+    .px-10 {
+        padding-left: 0rem;
+    }
+    
+    .py-2 {
+        padding-top: 0rem;
+    }
+    .text-3xl {
+        font-size: 1.4rem;
+    }
+}
+
 @media all and (min-width: 500px){
     .form-box{
         
