@@ -47,6 +47,7 @@
     display: flex;
     align-items: baseline;
     margin-top: auto;
+    flex-flow: wrap;
 }
 
 .flex-grow {
