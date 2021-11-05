@@ -129,8 +129,8 @@ function Form() {
       </div>
       {errorMessage&&<p className="error">{errorMessage}</p>}
       <div className="flex-container"> 
-      <button  disabled={save} className="btn" style={{ filter: save ? "blur(3px)" : "none"}} type="submit" onClick={(e)=>onSubmit(e, 1)}>Save</button>
-      <button disabled={edit} className="btn" style={{ filter: edit ? "blur(3px)" : "none"}} type="submit" onClick={(e)=>onSubmit(e, 2)}>Update</button>
+      <button  disabled={save} className="btn" style={{ display: save ? "none" : "block"}} type="submit" onClick={(e)=>onSubmit(e, 1)}>Save</button>
+      <button disabled={edit} className="btn" style={{ display: edit ? "none" : "block"}} type="submit" onClick={(e)=>onSubmit(e, 2)}>Update</button>
       {/* <button className="btn" type="submit" onClick={(e)=>onSubmit(e, 3)}>Delete</button> */}
       </div>
     </form>
