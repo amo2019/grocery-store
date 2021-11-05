@@ -25,8 +25,8 @@ function App() {
   }, [setCart]);
 
   useEffect(() => {
-    setProducts(gsproducts)
-  }, [gsproducts]);
+    onSetSearch('')
+  }, []);
 
   const history = useHistory();
   const location = useLocation();
