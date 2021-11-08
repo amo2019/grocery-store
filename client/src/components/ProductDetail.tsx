@@ -18,19 +18,17 @@ export const ProductDetail: React.FunctionComponent<{
      
     const dispatch = useDispatch();
     const product = useMemo(
-        () => (productsSelector ?? []).find((p) => p.id === id),
+        () => (productsSelector ?? []).find((p) => p.id === parseInt(id)),
         [productsSelector, id]
     );
-    console.log('product:', product);
     const history = useHistory();
         const [isDisabled] = useState(false);
         
         const handleAddForm = () => {
-          console.log('Your button was clicked and is now disabled');
           dispatch(toggleSaveButton(true));
             history.push({
                 pathname: '/form',
-                search: `?id=${id}`,
+                search: `?id=${parseInt(id)}`,
                 state: {product} 
               })
         }

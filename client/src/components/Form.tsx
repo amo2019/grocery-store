@@ -11,7 +11,7 @@ function Form() {
     const id = useLocation().search.split('=')[1];
     const productsSelector = useSelector(
       (state: RootState) => state.products.item.find((item: Product)=>{
-        return item.id === id
+        return item.id === parseInt(id)
     
       })
     );
@@ -20,15 +20,6 @@ function Form() {
       useEffect(() => {
         inputRef.current.focus();
       }, [])
-
-    const testSelector = useSelector(
-      (state: RootState) => state.products.item.find((item: Product)=>{
-        return item.id === id
-    
-      })
-    );
-
-    console.log("testSelector:", testSelector)
 
     const initialData: Product = {
       id: '',
@@ -70,7 +61,6 @@ function Form() {
         
        if (tag === 1) {
         data["id"] = parseInt(uuid())
-        console.log("data:", data, data.id)
         setData(data)
 
          handeleAdd(data)

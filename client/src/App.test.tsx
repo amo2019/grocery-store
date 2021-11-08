@@ -19,7 +19,6 @@ test('if add to cart button clicked, the cart account is updated', async () => {
   screen.findByRole("")
 
   const button = screen.getByTestId("btn-2")
-  console.log("button:::", button)
   //userEvent.click(await screen.findByRole("button", {  name: /Add To Cart/i}));
   expect(await screen.findByText(/cart \(0\)/i)).toBeInTheDocument();
   userEvent.click(await screen.getByTestId("btn-2"));

@@ -1,7 +1,7 @@
 import type { Product } from "../product";
-const BASE_URL = "http://localhost:8000/api/products";
+const BASE_URL = "http://localhost:8080/api/product";
 export const getProducts = async (): Promise<Product[]> =>
-  fetch(`${BASE_URL}`).then((res) => res.json());
+  fetch(`${BASE_URL}s`).then((res) => res.json());
   let uuid = () => {
     return (crypto.getRandomValues(new Uint8Array(8))).toString().replace(/,/g, '').substr(1,16);
   

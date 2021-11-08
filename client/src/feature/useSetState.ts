@@ -16,7 +16,6 @@ function useSetState() {
         result = await getProducts()
         setResult(result);
     };
-    console.log("XXX:",productsResult);
     // return piece of state AND a function to change it
     return [productsResult, setProductsResult];
   }

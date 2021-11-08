@@ -30,7 +30,6 @@ export const HomePage: React.FunctionComponent<{
   );
 
   const handleAddForm = () => {
-    console.log('Your button was clicked and is now disabled');
     dispatch(toggleEditButton(true));
     history.push("/form")
   }
