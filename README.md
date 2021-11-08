@@ -7,4 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### click https://amo2019.github.io/grocery-store/ to open the app.
 
 ### at branch react-mdb-typeorm find revised version with MongoDB-typeorm
+### at branch react-postgresql-typeorm  find revised version with PostgreSQL-typeorm
+### in client ProductSlice.ts handles both local state and backend database for testing purpose in case there is no batabse connection.
 
+ 
