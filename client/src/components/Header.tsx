@@ -1,7 +1,23 @@
 import React, { useMemo, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import type { Product } from "../product";
-import "./Header.css";
+import { Button } from '../util/Button';
+
+
+import {
+    HeaderContainer,
+    NotificationsSpan,
+    SearchContainer,
+    FlexDiv,
+    TooltipDiv,
+    TooltipSpan,
+    Input,
+    Title,
+    Img,
+    InnerDiv,
+    Div,
+    I
+  } from './Header.styles';
 
 export const Header: React.FunctionComponent<{
     cart: Product[];
@@ -25,61 +41,67 @@ export const Header: React.FunctionComponent<{
       (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & 15) >> c / 4).toString(16)
     );
   }
+
+  const CartButton = Button({padding: ".6em 1em", size:".8em"})
+
+
+  const itemCount: number = (cart ?? []).length;
   
 return (
-    <div className="header">
-    <div onClick={()=>onSetSearch("")} className="text-2xl px-10 py-2">
+    <HeaderContainer>
+    <SearchContainer onClick={()=>onSetSearch("")}>
         <Link to="/" data-testid="header">
-        <i className="fas fa-shopping-basket mr-2"></i>
-        Simple Grocery Store
+        <I className="fas fa-shopping-basket"></I>
+        Grocery Store
         </Link>
-    </div>
-    <div className="flex-grow">
-        <input
+    </SearchContainer>
+    <FlexDiv>
+    <Div>
+        <Input
         ref={inputRef as any}
         type="text"
         placeholder="Search.."
         value={search}
         onChange={(evt) => onSetSearch(evt.target.value)}
-        className="input p-2 text-xl  rounded-lg max-w-md w-96"
+        
         />
-    </div>
-    <div className="px-10 py-2 justify-end has-tooltip cart-icon ">
-        <span className="tooltip cart">
+    </Div>
+    <TooltipDiv>
+        <TooltipSpan>
         <div>Cart ({(cart ?? []).length})</div>
         {cart?.map((product, index) => (
-        <div key={uuid()} className="flex flex-row my-2">
-            <img src={product.image} alt={product.title} className="h-8 mr-2" />
-            <h3 className="title text-md truncate flex-grow">{product.title}</h3>
-            <div className="text-md text-right flex-grow justify-end ml-2">
+        <InnerDiv key={uuid()}>
+            <Img src={product.image} alt={product.title}/>
+            <Title>{product.title}</Title>
+            <div>
                 {product.price.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
                 })}
             </div>
-            </div>
+        </InnerDiv>
         ))}
-        <div className="flex">
-            <button
+        <FlexDiv>
+            <CartButton
             data-testid="shopping-cart-btn"
             onClick={onClearCart}
-            className="text-md px-8 py-1 font-bold bg-green-800 text-white rounded-full"
             >
             Clear Cart
-            </button>
-            <div className="text-md text-right flex-grow justify-end ml-2">
+            </CartButton>
+            <Div>
             {total.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
             })}
-            </div>
-        </div>
-        </span>
-        <div id="cart-total" className="hint" data-testid="Cart">
+            </Div>
+        </FlexDiv>
+        </TooltipSpan>
+        <div id="cart-total" data-testid="Cart">
         
-        <span data-testid="cart-total" className="notifications" >{(cart ?? []).length}</span>
+        <NotificationsSpan data-testid="cart-total" >{itemCount}</NotificationsSpan>
         </div>
-    </div>
-    </div>
+    </TooltipDiv>
+    </FlexDiv>
+    </HeaderContainer>
 );
 };

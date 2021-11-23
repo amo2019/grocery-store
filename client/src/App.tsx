@@ -4,11 +4,14 @@ import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { InjectProducts } from "./feature/productSlice";
 import type { Product } from "./product";
+import gproducts from "./products.json"
 import { HomePage } from "./components/HomePage";
 import { ProductDetail } from "./components/ProductDetail";
 import { Header } from "./components/Header";
 import  Form  from "./components/Form";
 import { getProducts } from "./lib/api";
+import { GlobalStyle } from './global.styles';
+
 
 function App() {
   const [cart, setCart] = useLocalStorage<Product[]>("cart", []);
@@ -16,11 +19,14 @@ function App() {
   
   let result: Product[] = [];
   const dispatch = useDispatch();
+  
   useEffect(()=>{
     const fetchData = async()=>{
       result = await getProducts()
-      setProducts(result)
-      dispatch(InjectProducts(result))
+      const seeds = result || gproducts;
+      console.log("result:", result, gproducts, seeds)
+      setProducts(seeds)
+      dispatch(InjectProducts(seeds))
 
       return () => {
         setProducts([]); 
@@ -28,7 +34,9 @@ function App() {
   }
   fetchData()
   }, [])
-  if(!products)  dispatch(InjectProducts(result))
+
+
+  if(!products)  dispatch(InjectProducts(gproducts))
    
   const onAddToCart = useCallback(
     (product: Product) => {
@@ -59,6 +67,7 @@ function App() {
 
   return (
     <div>
+      <GlobalStyle />
       <Header
       cart={cart ?? []}
       onClearCart={onClearCart}
