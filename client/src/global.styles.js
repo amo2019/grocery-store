@@ -1,13 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
 
-.cart {
-  width: 23rem;
-  margin-top: 1.5rem;
-  margin-left: -20rem;
-  background: rgb(77, 120, 95);
-  padding: 0.5rem;
-  color: rgb(51, 48, 48);
-  border: 1px solid black;
-}
+export const GlobalStyle = createGlobalStyle`
 
 *, ::before, ::after {
   --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
@@ -34,3 +27,23 @@
     background-color: #107a49 !important;
     color: #e8e6e3 !important;
 }
+
+
+	body {
+		font-family: 'Open Sans Condensed';
+		padding: 2px 4px;
+
+		@media screen and (max-width: 800px) {
+			padding: 5px;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		color: black;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+`;

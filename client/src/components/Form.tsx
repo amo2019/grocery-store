@@ -4,8 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/store";
 import { AddProduct, UpdateProduct, DeleteProduct } from "../feature/productSlice";
 import type { Product } from "../product";
-
-import "./form.css";
+//import { Button } from '../util/Button';
+import {
+  MainContainerForm,
+  FormBoxDiv,
+  FlexContainer,
+  Error,
+  TextArea,
+  Button
+} from './Form.styles';
+//import "./form.css";
 
 function Form() {
     const id = useLocation().search.split('=')[1];
@@ -19,16 +27,8 @@ function Form() {
       const inputRef = useRef<any>(null);
       useEffect(() => {
         inputRef.current.focus();
+        return inputRef.current
       }, [])
-
-    const testSelector = useSelector(
-      (state: RootState) => state.products.item.find((item: Product)=>{
-        return item.id === id
-    
-      })
-    );
-
-    console.log("testSelector:", testSelector)
 
     const initialData: Product = {
       id: '',
@@ -70,7 +70,6 @@ function Form() {
         
        if (tag === 1) {
         data["id"] = parseInt(uuid())
-        console.log("data:", data, data.id)
         setData(data)
 
          handeleAdd(data)
@@ -103,37 +102,39 @@ function Form() {
         DeleteProduct(data)
       );
     }
+
+    //const FormButton = Button({padding:".7em 1.3em", size:"1.3em"})
    
   return (
     <main>
-    <form className="main-container" onSubmit={onSubmit}>
-      <div className="form-box">
+    <MainContainerForm onSubmit={onSubmit}>
+      <FormBoxDiv>
         <label data-tooltip="required field" htmlFor="image" >Image</label>
         <input ref={inputRef as any} id="image" name="image" type="text" value={data.image} onChange={(e)=>handleInputChange(e)}/>
-      </div>
-      <div className="form-box">
+      </FormBoxDiv>
+      <FormBoxDiv>
         <label data-tooltip="required field" htmlFor="price">Price</label>
         <input id="price" name="price" type="text" value={data.price} onChange={(e)=>handleInputChange(e)}/>
-      </div>
-      <div className="form-box">
+      </FormBoxDiv>
+      <FormBoxDiv>
         <label data-tooltip="required field" htmlFor="title">Title</label>
         <input id="title" name="title" type="text" value={data.title} onChange={(e)=>handleInputChange(e)}/>
-      </div>
-      <div className="form-box">
+      </FormBoxDiv>
+      <FormBoxDiv>
         <label data-tooltip="required field" htmlFor="category">Category</label>
         <input id="category" name="category" type="text" value={data.category} onChange={(e)=>handleInputChange(e)}/>
-      </div>
-      <div className="form-box">
+      </FormBoxDiv>
+      <FormBoxDiv>
         <label htmlFor="description">Description</label>
-        <textarea id="description" name="description" value={data.description} onChange={(e)=>handleInputChange(e)} ></textarea>
-      </div>
-      {errorMessage&&<p className="error">{errorMessage}</p>}
-      <div className="flex-container"> 
-      <button  disabled={save} className="btn" style={{ display: save ? "none" : "block"}} type="submit" onClick={(e)=>onSubmit(e, 1)}>Save</button>
-      <button disabled={edit} className="btn" style={{ display: edit ? "none" : "block"}} type="submit" onClick={(e)=>onSubmit(e, 2)}>Update</button>
+        <TextArea id="description" name="description" value={data.description} onChange={(e)=>handleInputChange(e)} ></TextArea>
+      </FormBoxDiv>
+      {errorMessage&&<Error>{errorMessage}</Error>}
+      <FlexContainer> 
+      <Button  disabled={save}  style={{ display: save ? "none" : "block"}} type="submit" onClick={(e)=>onSubmit(e, 1)}>Save</Button>
+      <Button disabled={edit}  style={{ display: edit ? "none" : "block"}} type="submit" onClick={(e)=>onSubmit(e, 2)}>Update</Button>
       {/* <button className="btn" type="submit" onClick={(e)=>onSubmit(e, 3)}>Delete</button> */}
-      </div>
-    </form>
+      </FlexContainer>
+    </MainContainerForm>
     </main>
   );
 }

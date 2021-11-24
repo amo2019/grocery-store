@@ -1,10 +1,23 @@
 import React, { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { toggleEditButton } from "../feature/buttonSlice";
 import type { Product } from "../product";
 import { RootState } from "../app/store";
-import "./HomePage.css";
+//import { Button } from '../util/Button';
+import {
+  GridContainer,
+  FlexContainer,
+  InnerDiv,
+  FlexDiv,
+  LinkTag,
+  BigWhiteDiv,
+  Title,
+  Button,
+  TextMDiv,
+  Fab,
+  I
+} from './HomePage.styles';
 
 export const HomePage: React.FunctionComponent<{
   products: Product[];
@@ -41,52 +54,53 @@ export const HomePage: React.FunctionComponent<{
     );
   }
 
+  //const HPButton = Button({padding:".8em 1.5em", size:"1.5em"})
+
+
   return (
-    <div className="grid-container">
+    <GridContainer>
       {filteredProducts?.map((product) => (
-        <Link
+        <LinkTag
           to={`/detail/${product.id}`}
           key={uuid()}
-          className="flex-cart m-2 border border-1 border-green-600 rounded-t-lg bg-green-600"
         >
-          <h3 className="title font-bold truncate w-full max-w-full py-2 px-4 text-white">
+          <Title>
             {product.title}
-          </h3>
-          <div className="bg-white p-3">
-            <div className="w-full flex justify-center">
-              <img src={product.image} alt={product.title} data-testid={`img-${product.id}`}/>
-            </div>
-            <div className="bg-white p-3">
-              <div className="w-full flex justify-center">
+          </Title>
+          <BigWhiteDiv>
+            <FlexDiv>
+              <img src={product.image} alt={product.title} data-testid={`img-${product.id}`} />
+            </FlexDiv>
+            <BigWhiteDiv>
+              <FlexDiv>
                 {product.description}
-              </div>
-              <div className="flex-container">
-                <div className="text-md mt-1">{product.category}</div>
-                <div className="text-lg text-right flex-grow justify-end mt-1 mr-4 font-bold">
+              </FlexDiv>
+              <FlexContainer>
+                <TextMDiv>{product.category}</TextMDiv>
+                <InnerDiv>
                   {product?.price.toLocaleString("en-US", {
                     style: "currency",
                     currency: "USD",
                   })}
-                </div>
-                <button
-                data-testid={`btn-${product.id}`}
-                  onClick={(evt) => {
+                </InnerDiv>
+                <Button
+                  data-testid={`btn-${product.id}`}
+                  onClick={(evt: any) => {
                     evt.preventDefault();
                     onAddToCart(product);
                   }}
-                  className="btn"
                 >
-                  <i className="fas fa-cart-plus mr-2"></i>
+                  <I className="fas fa-cart-plus"></I>
                   Add To Cart
-                </button>
-              </div>
-              </div>
-          </div>
-        </Link>
+                </Button>
+              </FlexContainer>
+            </BigWhiteDiv>
+          </BigWhiteDiv>
+        </LinkTag>
       ))}
-  <footer>
-    <div onClick={handleAddForm} className="fab"></div>
-  </footer>
-    </div>
+      <footer>
+        <Fab onClick={handleAddForm}></Fab>
+      </footer>
+    </GridContainer>
   );
 };

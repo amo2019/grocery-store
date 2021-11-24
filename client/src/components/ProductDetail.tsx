@@ -6,6 +6,22 @@ import { RootState } from "../app/store";
 import { DeleteProduct } from "../feature/productSlice";
 import { toggleSaveButton } from "../feature/buttonSlice";
 import { useHistory } from "react-router-dom";
+//import { Button } from '../util/Button';
+
+import {
+    MainDiv,
+    GridDiv,
+    FlexContainer,
+    FlexCart,
+    FlexDiv,
+    InnerFlexDiv,
+    InnerDiv,
+    Title,
+    Button,
+    TextMDiv,
+    Img,
+    I
+  } from './ProductDetail.styles';
 
 export const ProductDetail: React.FunctionComponent<{
     products: Product[];
@@ -35,61 +51,62 @@ export const ProductDetail: React.FunctionComponent<{
               })
         }
 
-    return (
-        <div className="p-10">
-        {product && (
-        <>
-            <h3 className="title font-bold text-3xl truncate w-full max-w-full mb-2">
-            {product.title}
-            </h3>
-            <div className="grid grid-cols-2 gap-10">
-            <div className="w-full flex justify-center">
-                <img
-                src={product.image}
-                alt={product.title}
-                className="text-center"
-                />
-            </div>
-            <div className="flex-cart">
-                <div>
-                <div className="text-lg overflow-ellipsis description">
-                    {product.description}
-                </div>
-                <div className="flex flex-row mt-2">
-                    <div className="text-md mt-1">{product.category}</div>
-            <div className="text-2xl text-right flex-grow justify-end mt-1 mr-4">
-                {product?.price.toLocaleString("en-US", {
-                style: "currency",
-                currency: "USD",
-                    })}
-            </div>
-                    <button
-                    data-testid="detail-btn"
-                    onClick={(evt) => {
-                        evt.preventDefault();
-                        onAddToCart(product);
-                    }}
-                    className="btn"
-                    >
-                    <i className="fas fa-cart-plus mr-2"></i>
-                    Add To Cart
-                    </button>
-                </div>
-                <div className="flex-container"> 
-                <button  onClick={() => {
-                    dispatch(
-                        DeleteProduct({...product, id: product.id})
-                    );
-                    history.push("/");
-                    }} className="btn">Delete</button>
-                <button disabled={isDisabled}
-                    onClick={handleAddForm} className="btn" type="submit" >Edit</button>
-                </div>
-                </div>
-            </div>
-            </div>
-        </>
-        )}
-    </div>
-    );
+       // const PDButton = Button({padding:".7em 1.3em", size:"1.3em"})
+
+
+        return (
+            <MainDiv>
+            {product && (
+            <>
+                <Title>
+                {product.title}
+                </Title>
+                <GridDiv>
+                <FlexDiv>
+                    <Img
+                    src={product.image}
+                    alt={product.title}
+                    />
+                </FlexDiv>
+                <FlexCart>
+                    <div>
+                    <TextMDiv>
+                        {product.description}
+                    </TextMDiv>
+                    <InnerFlexDiv>
+                        <div className="text-md mt-1">{product.category}</div>
+                <InnerDiv>
+                    {product?.price.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                        })}
+                </InnerDiv>
+                        <Button
+                        data-testid="detail-btn"
+                        onClick={(evt: any) => {
+                            evt.preventDefault();
+                            onAddToCart(product);
+                        }}
+                        >
+                        <I className="fas fa-cart-plus"></I>
+                        Add To Cart
+                        </Button>
+                    </InnerFlexDiv>
+                    <FlexContainer> 
+                    <Button  onClick={() => {
+                        dispatch(
+                            DeleteProduct({...product, id: product.id})
+                        );
+                        history.push("/");
+                        }} className="btn">Delete</Button>
+                    <Button disabled={isDisabled}
+                        onClick={handleAddForm} type="submit" >Edit</Button>
+                    </FlexContainer>
+                    </div>
+                </FlexCart>
+                </GridDiv>
+            </>
+            )}
+        </MainDiv>
+        );
 };
