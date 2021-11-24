@@ -1,63 +1,19 @@
 {
-  "name": "react-ecommerce",
-  "version": "1.0.1",
-  "private": true,
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.6.2",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "autoprefixer": "^9.8.6",
-    "postcss": "^7.0.36",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-hook-form": "^7.18.0",
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "react-use": "^17.2.4",
-    "typescript": "^4.1.2",
-    "web-vitals": "^1.0.1"
-  },
+  "name": "react-mdb-typeorm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build",
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject",
-    "cypress": "cypress open"
+    "client": "cd client && yarn start",
+    "server": "cd server && yarn start",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "heroku-postbuild": "cd client && yarn && yarn --only=dev --no-shrinkwrap && yarn build cd.. cd server && yarn && yarn --only=dev --no-shrinkwrap && yarn build"
   },
-  "homepage": "https://amo2019.github.io/grocery-store/",
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@testing-library/cypress": "^8.0.1",
-    "@types/react-router-dom": "^5.1.8",
-    "craco": "^0.0.3",
-    "cypress": "^8.4.1",
-    "eslint-plugin-cypress": "^2.12.1",
-    "gh-pages": "^3.2.3",
-    "postcss-loader": "^6.1.1"
-  }
+    "concurrently": "^6.3.0"
+  },
+  "dependencies": {}
 }

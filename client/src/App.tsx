@@ -1,19 +1,42 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useLocalStorage } from "react-use";
 import { Switch, Route, useHistory, useLocation } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { InjectProducts } from "./feature/productSlice";
 import type { Product } from "./product";
+import gproducts from "./products.json"
 import { HomePage } from "./components/HomePage";
 import { ProductDetail } from "./components/ProductDetail";
 import { Header } from "./components/Header";
 import  Form  from "./components/Form";
-import gproducts from "./products.json"
+import { getProducts } from "./lib/api";
+import { GlobalStyle } from './global.styles';
+
 
 function App() {
   const [cart, setCart] = useLocalStorage<Product[]>("cart", []);
   const [products, setProducts] = useState<Product[]>([]);
-  let gsproducts: Product[] = gproducts;
- 
+  
+  const resultRef = useRef<Product[]>([]);
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    const fetchData = async()=>{
+      resultRef.current = await getProducts()
+      const seeds = resultRef.current || gproducts;
+      setProducts(seeds)
+      dispatch(InjectProducts(seeds))
+      onSetSearch('')
+      return () => {
+        setProducts([]); 
+      };
+  }
+  fetchData()
+  }, [dispatch])
+
+
+  if(!products)  dispatch(InjectProducts(gproducts))
+   
   const onAddToCart = useCallback(
     (product: Product) => {
       setCart([...(cart ?? []), product]);
@@ -23,10 +46,6 @@ function App() {
   const onClearCart = useCallback(() => {
     setCart([]);
   }, [setCart]);
-
-  useEffect(() => {
-    onSetSearch('')
-  }, []);
 
   const history = useHistory();
   const location = useLocation();
@@ -43,6 +62,7 @@ function App() {
 
   return (
     <div>
+      <GlobalStyle />
       <Header
       cart={cart ?? []}
       onClearCart={onClearCart}
